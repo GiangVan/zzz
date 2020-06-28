@@ -1,0 +1,118 @@
+
+<div class="container" *ngIf='lookingAccount'>
+	<div class="profile-head">
+		<!-- cover -->
+		<div *ngIf='lookingAccount.coverUrl' class="background img" [ngStyle]="{'background-image':'url('+lookingAccount.coverUrl+')'}">
+		</div>
+		<div *ngIf='!lookingAccount.coverUrl' class="background img" [ngStyle]="{'background-image':'url('+defaultCoverUrl+')'}">
+		</div>
+		<h1 class="name">{{ lookingAccount.name }}</h1>
+	</div>
+	<div class="profile-tab pb-3 mb-5">
+		<!-- avatar -->
+		<div *ngIf='lookingAccount.avatarUrl' class="img avatar rounded-lg" [ngStyle]="{'background-image':'url('+lookingAccount.avatarUrl+')'}">
+		</div>
+		<div *ngIf='!lookingAccount.avatarUrl' class="img avatar rounded-lg" [ngStyle]="{'background-image':'url('+defaultAvatarUrl+')'}">
+		</div>
+
+		<div class="m-3">
+			<!-- describe -->
+			<div class="mb-5">
+				<h2 class="highlight-text">{{ 'LookAccountLanguage.ABOUT' | translate}}</h2>
+				<p class="text-wrap">{{ lookingAccount.describe }}</p>
+			</div>
+			<!-- birthyear -->
+			<p class="text-wrap" *ngIf='lookingAccount.birthyear'>
+				<i-feather class="mr-1" name="calendar"></i-feather>
+				{{ 'LookAccountLanguage.BIRTHYEAR' | translate}}:
+				<span class="highlight-text">{{lookingAccount.birthyear}}</span>
+			</p>
+			<!-- birthmonth -->
+			<p class="text-wrap" *ngIf='lookingAccount.birthmonth'>
+				<i-feather class="mr-1" name="calendar"></i-feather>
+				{{ 'LookAccountLanguage.BIRTHMONTH' | translate}}:
+				<span class="highlight-text">{{lookingAccount.birthmonth}}</span>
+			</p>
+			<!-- phone -->
+			<p class="text-wrap" *ngIf='lookingAccount.phone'>
+				<i-feather class="mr-1" name="smartphone"></i-feather>
+				{{ 'LookAccountLanguage.PHONE' | translate}}:
+				<span class="highlight-text">{{lookingAccount.phone}}</span>
+			</p>
+			<!-- email -->
+			<p class="text-wrap" *ngIf='lookingAccount.email'>
+				<i-feather class="mr-1" name="mail"></i-feather>
+				{{ 'LookAccountLanguage.EMAIL' | translate}}:
+				<span class="highlight-text">{{lookingAccount.email}}</span>
+			</p>
+			<!-- followers -->
+			<p class="text-wrap mb-4" *ngIf='lookingAccount.countFollowers !== null'>
+				<i-feather class="mr-1" name="bar-chart"></i-feather>
+				{{ 'LookAccountLanguage.FOLLOWERS' | translate}}:
+				<span class="highlight-text">{{lookingAccount.countFollowers}}</span>
+			</p>
+			<!-- createdAt -->
+			<p class="text-wrap" *ngIf='lookingAccount.createdAt'>
+				<i-feather class="mr-1" name="clock"></i-feather>
+				{{ 'LookAccountLanguage.CREATED_AT' | translate}}:
+				<span class="highlight-text">{{lookingAccount.createdAt}}</span>
+			</p>
+		</div>
+	</div>
+	<div class="profile-body">
+		<div class="mt-4 d-flex justify-content-end">
+			<!-- friends buttons -->
+			<button (click)='showLookAccountFriendedOptionsDropdown($event)' class="btn btn-dark" *ngIf="lookingAccount.relationship === accountRelationShipType.FRIEND">
+				<i-feather name="user-check"></i-feather></button>
+			<button
+				*ngIf="!lookingAccount.isRequesting && lookingAccount.relationship === accountRelationShipType.FRIEND_REQUEST"
+				class="btn btn-border" (click)='unsendFriendRequest()'
+				(click)='hideClickedELement($event)'>{{ 'LookAccountLanguage.UNFRIEND_REQUEST' | translate}}</button>
+			<button
+				*ngIf="!lookingAccount.isRequesting && lookingAccount.relationship === accountRelationShipType.FROM_FRIEND_REQUEST"
+				class="btn btn-dark mr-2" (click)='acceptFriendRequest()'
+				(click)='hideClickedELement($event)'>{{ 'LookAccountLanguage.CONFIRM' | translate}}</button>
+			<button
+				*ngIf="!lookingAccount.isRequesting && lookingAccount.relationship === accountRelationShipType.FROM_FRIEND_REQUEST"
+				class="btn btn-dark " (click)='cancelFriendRequest()'
+				(click)='hideClickedELement($event)'>{{ 'LookAccountLanguage.CANCEL' | translate}}</button>
+			<button
+				*ngIf="!lookingAccount.isRequesting && lookingAccount.relationship === accountRelationShipType.STRANGER"
+				class="btn btn-dark " (click)='sendFriendRequest()' (click)='hideClickedELement($event)'>
+				<i-feather class="pr-1" name="user-plus"></i-feather>
+				{{ 'LookAccountLanguage.MAKE_FRIEND' | translate}}
+			</button>
+			<!-- loader -->
+			<div *ngIf="lookingAccount.isRequesting" class="d-inline-flex align-items-center">
+				{{ 'LookAccountLanguage.REQUESTING' | translate}}
+			</div>
+			<!-- options button -->
+			<button (click)='showLookAccountOptionsDropdown($event)' class="btn btn-dark option-btn ml-2">
+				<i-feather name="more-horizontal"></i-feather>
+			</button>
+		</div>
+
+		<!-- nav -->
+		<ul class="mt-4 nav nav-tabs">
+			<li class="nav-item">
+				<p class="nav-link active">
+					{{ 'LookAccountLanguage.TIMELINE' | translate}}
+				</p>
+			</li>
+			<li class="nav-item">
+				<p class="nav-link">
+					{{ 'LookAccountLanguage.FRIENDS' | translate}}
+				</p>
+			</li>
+			<li class="nav-item">
+				<p class="nav-link">
+					{{ 'LookAccountLanguage.PHOTOS' | translate}}
+				</p>
+			</li>
+		</ul>
+		<!-- posts -->
+		<div class="posts">
+
+		</div>
+	</div>
+</div>

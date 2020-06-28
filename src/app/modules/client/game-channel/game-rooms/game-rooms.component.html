@@ -1,0 +1,65 @@
+<div class="h-100 d-flex flex-column position-relative">
+	<div class="d-flex align-items-center">
+		<!-- title -->
+		<strong class="flex-grow-1">
+			<h5>{{ 'GameRoomsLanguage.ROOMS_LIST' | translate}}</h5>
+		</strong>
+		<!-- options button -->
+		<div class="btn bg-transparent mr-1" (click)='showGameRoomsOptionsDropdownDropdown($event)'>
+			<i-feather name="search"></i-feather>
+		</div>
+		<div class="btn bg-transparent mr-1" (click)='showGameRoomsOptionsDropdownDropdown($event)'>
+			<i-feather name="filter"></i-feather>
+		</div>
+		<div class="btn bg-transparent" (click)='showGameRoomsOptionsDropdownDropdown($event)'>
+			<i-feather name="more-horizontal"></i-feather>
+		</div>
+	</div>
+
+	<!-- loader location -->
+	<div class="loaderLocation" #loaderLocation></div>
+
+	<!-- rooms list -->
+	<div [@listAnimation]='gameRooms.length' class="px-2 pt-2 mt-4 d-flex flex-column flex-grow-1 overflow-auto">
+
+		<!-- rooms item -->
+		<div class="room-item-container img mb-4 rounded-lg overflow-hidden shadow" *ngFor='let room of gameRooms'
+			[ngStyle]="{'background-image':'url('+room.backgroundUrl+')'}">
+			<div class="room-item px-3 d-flex align-items-center"
+				(click)="!room.isRequestingFromClient ? handleRoomItemsClick(room, $event) : null">
+				<!-- loader -->
+				<div *ngIf='room.isRequestingFromClient'
+					class="loader d-flex justify-content-center align-items-center">
+					{{ 'GameRoomsLanguage.REQUESTING' | translate}}</div>
+				<!-- avatar -->
+				<div class="img logo rounded-circle" [ngStyle]="{'background-image':'url('+room.logoUrl+')'}"></div>
+				<div class="flex-grow-1 pl-2 overflow-hidden">
+					<!-- name -->
+					<h5
+						[ngClass]="{'text-nowrap room-title pb-2 mb-1 overflow-hidden font-weight-bold border-bottom': true, 'highlight-text': !room.hasJoined && !room.isRequesting}">
+						{{room.name}}</h5>
+					<!-- info -->
+					<div class="d-flex align-items-center">
+						<i-feather *ngIf='room.type === ROOM_TYPE.PRIVATE' class="mr-3" name="shield"></i-feather>
+						<i-feather *ngIf='room.type === ROOM_TYPE.PUBLIC' class="mr-3" name="shield-off"></i-feather>
+						<i-feather class="mr-1" name="users"></i-feather>
+						<p class="m-0 mr-3">{{room.countMember}}/{{room.maxMember}}</p>
+						<p *ngIf='room.hasJoined' class="m-0 highlight-text font-weight-bold">
+							{{ 'GameRoomsLanguage.JOINED' | translate}}</p>
+						<p *ngIf='room.isRequesting' class="m-0 highlight-text font-weight-bold">
+							{{ 'GameRoomsLanguage.REQUESTED' | translate}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- add room button -->
+	<div class="pt-3 mt-3 mb-2 border-top">
+		<div (click)='showCreateRoomsPopup()'
+			class="btn highlight-bg d-flex justify-content-center align-items-center shadow">
+			<strong>{{ 'JoinedRoomsLanguage.ADD_ROOM' | translate}}</strong>
+		</div>
+	</div>
+</div>

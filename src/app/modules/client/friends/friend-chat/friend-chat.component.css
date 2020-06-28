@@ -1,0 +1,14 @@
+.friend-chat-body {
+	flex-grow: 1;
+	overflow: auto;
+}
+
+.chat-content {
+	height: 100px;
+	border: none;
+	resize: none;
+}
+
+:host{
+	position: relative;
+}

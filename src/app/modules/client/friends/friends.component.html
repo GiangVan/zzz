@@ -1,0 +1,69 @@
+<div *ngIf="friendsContainerState === 'expand' || chatBoxState === 'expand'" class="main-btn-resize"
+	(click)='resizeMainContainer()'>
+	<i-feather name="chevron-right"></i-feather>
+</div>
+
+<div class="main-container">
+	<div class="friends-container bg7 d-flex flex-column" [@changeFriendsContainerState]="friendsContainerState">
+		<div class="d-flex align-items-center" style="margin-right: -10px;">
+			<div *ngIf="friendsContainerState != 'expand'">
+				<div class="btn-resize" (click)='expandFriendsContainer()'>
+					<i-feather name="chevron-left"></i-feather>
+				</div>
+			</div>
+			<!-- friends title -->
+			<h5 class="flex-grow-1" *ngIf="friendsContainerState === 'expand'">
+				<strong>{{ 'FriendsLanguage.FRIENDS' | translate}}</strong>
+			</h5>
+			<!-- options button -->
+			<div class="btn bg-transparent" (click)='showFriendsOptionsDropdown($event)'>
+				<i-feather name="more-horizontal"></i-feather>
+			</div>
+		</div>
+
+		<!-- loader location -->
+		<div class="loaderLocation" #loaderLocation></div>
+
+		<!-- friends list -->
+		<div [@listAnimation]='friends.length' class="friends-list my-4 flex-grow-1 overflow-hidden overflow-y-auto"
+			*ngIf="friends" [ngStyle]="{
+				'margin-left': (friendsContainerState == 'expand') ? '-15px' : '-5px', 
+				'margin-right': (friendsContainerState == 'expand') ? '-15px' : '-5px'
+			}">
+			<!-- friend items -->
+			<div [ngStyle]="{'padding-left': (friendsContainerState == 'expand') ? '10px' : '5px'}"
+				[ngClass]="{'friend-items-container d-flex align-items-center my-2': true, 'active': this.selectedFriend === friend}"
+				*ngFor="let friend of friends">
+				<div class="friends-items rounded-lg p-2 d-flex align-items-center flex-grow-1 overflow-hidden"
+					(click)="openChatBox(friend)">
+					<!-- avatar -->
+					<div *ngIf='friend.avatarUrl' class="img rounded-lg"
+						[ngStyle]="{'background-image':'url('+friend.avatarUrl+')'}"></div>
+					<div *ngIf='!friend.avatarUrl' class="img rounded-lg"
+						[ngStyle]="{'background-image':'url('+defaultAvatarUrl+')'}"></div>
+					<!-- name -->
+					<div *ngIf="friendsContainerState === 'expand'"
+						class="pl-3 text-nowrap overflow-hidden flex-grow-1">
+						<strong class="highlight-text">{{ friend.name }}</strong>
+						<p class="m-0" *ngIf='friend.latestMessage'>{{friend.latestMessage}}</p>
+					</div>
+				</div>
+				<!-- options -->
+				<div (click)='showFriendItemDropdown($event, friend.id)' *ngIf="friendsContainerState === 'expand'"
+					class="friends-options ml-1 rounded-lg">
+					<i-feather name="more-vertical"></i-feather>
+				</div>
+			</div>
+
+		</div>
+		<!-- make friend button -->
+		<div (click)='showSearchPopup()' [style.width]="friendsContainerState != 'expand' ? '48px' : 'unset'"
+			[style.height]="friendsContainerState != 'expand' ? '48px' : 'unset'"
+			[ngClass]="{'btn d-flex justify-content-center mb-2 shadow border-0': true, 'm-2': friendsContainerState != 'expand', 'btn-border': friendsContainerState === 'expand'}">
+			<i-feather name="search"></i-feather><strong class="pl-2"
+				*ngIf="friendsContainerState === 'expand'">{{ 'FriendsLanguage.MAKE_FRIENDS' | translate}}</strong>
+		</div>
+	</div>
+
+	<app-friend-chat [@changeChatBoxState]="chatBoxState" class="hr-left"></app-friend-chat>
+</div>

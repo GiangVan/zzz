@@ -1,0 +1,119 @@
+<div class="container" *ngIf='oldProfile'>
+	<div class="profile-head">
+		<!-- cover -->
+		<div *ngIf='oldProfile.coverUrl' class="background img"
+			[ngStyle]="{'background-image':'url('+oldProfile.coverUrl+')'}">
+		</div>
+		<div *ngIf='!oldProfile.coverUrl' class="background img"
+			[ngStyle]="{'background-image':'url('+defaultCoverUrl+')'}">
+		</div>
+		<!-- name -->
+		<h2 class="name">{{ oldProfile.name }}</h2>
+	</div>
+	<div class="profile-tab pb-3 mb-5">
+		<!-- avatar -->
+		<div *ngIf='oldProfile.avatarUrl' class="img avatar rounded-lg"
+			[ngStyle]="{'background-image':'url('+oldProfile.avatarUrl+')'}"></div>
+		<div *ngIf='!oldProfile.avatarUrl' class="img avatar rounded-lg"
+			[ngStyle]="{'background-image':'url('+defaultAvatarUrl+')'}"></div>
+
+		<div class="m-3">
+			<!-- describe -->
+			<div class="mb-5">
+				<h3 class="highlight-text">{{ 'ProfileLanguage.ABOUT' | translate}}</h3>
+				<p class="text-wrap">{{ oldProfile.describe }}</p>
+			</div>
+			<!-- birthyear -->
+			<p class="text-wrap mb-4" *ngIf='oldProfile.birthyear'>
+				<i-feather class="mr-1" name="calendar"></i-feather>
+				{{ 'ProfileLanguage.BIRTHYEAR' | translate}}:
+				<span class="highlight-text">{{oldProfile.birthyear}}</span>
+			</p>
+			<!-- birthmonth -->
+			<p class="text-wrap mb-4" *ngIf='oldProfile.birthmonth'>
+				<i-feather class="mr-1" name="calendar"></i-feather>
+				{{ 'ProfileLanguage.BIRTHMONTH' | translate}}:
+				<span class="highlight-text">{{oldProfile.birthmonth}}</span>
+			</p>
+			<!-- phone -->
+			<p class="text-wrap mb-4" *ngIf='oldProfile.phone'>
+				<i-feather class="mr-1" name="smartphone"></i-feather>
+				{{ 'ProfileLanguage.PHONE' | translate}}:
+				<span class="highlight-text">{{oldProfile.phone}}</span>
+			</p>
+			<!-- email -->
+			<p class="text-wrap mb-4" *ngIf='oldProfile.email'>
+				<i-feather class="mr-1" name="mail"></i-feather>
+				{{ 'ProfileLanguage.EMAIL' | translate}}:
+				<span class="highlight-text">{{oldProfile.email}}</span>
+			</p>
+			<!-- followers -->
+			<p class="text-wrap mb-4" *ngIf='oldProfile.countFollowers !== null'>
+				<i-feather class="mr-1" name="bar-chart"></i-feather>
+				{{ 'ProfileLanguage.FOLLOWERS' | translate}}:
+				<span class="highlight-text">{{oldProfile.countFollowers}}</span>
+			</p>
+			<!-- createdAt -->
+			<p class="text-wrap mb-4" *ngIf='oldProfile.createdAt'>
+				<i-feather class="mr-1" name="clock"></i-feather>
+				{{ 'ProfileLanguage.CREATED_AT' | translate}}:
+				<span class="highlight-text">{{oldProfile.createdAt}}</span>
+			</p>
+		</div>
+	</div>
+	<div class="profile-body">
+		<div class="mt-4 d-flex justify-content-end">
+			<!-- edit profile button -->
+			<button class="btn btn-dark mr-2">
+				<i-feather class="pr-1" name="edit-3"></i-feather>
+				{{ 'ProfileLanguage.EDIT_PROFILE' | translate}}
+			</button>
+			<!-- options button -->
+			<button class="btn btn-dark option-btn">
+				<i-feather name="more-horizontal"></i-feather>
+			</button>
+		</div>
+		<!-- nav -->
+		<ul class="mt-4 nav nav-tabs">
+			<li class="nav-item">
+				<p class="nav-link active">
+					{{ 'ProfileLanguage.TIMELINE' | translate}}
+				</p>
+			</li>
+			<li class="nav-item">
+				<p class="nav-link">
+					{{ 'ProfileLanguage.FRIENDS' | translate}}
+				</p>
+			</li>
+			<li class="nav-item">
+				<p class="nav-link">
+					{{ 'ProfileLanguage.PHOTOS' | translate}}
+				</p>
+			</li>
+		</ul>
+
+		<!-- post creating -->
+		<div class="mt-5 mb-2 post-creating d-flex">
+			<div class="img mr-3 rounded-circle" [ngStyle]="{'background-image':'url('+oldProfile.avatarUrl+')'}"></div>
+			<textarea class="flex-grow-1 rounded border p-2" style="min-height: 100px;"
+				placeholder="{{ 'ProfileLanguage.TYPE_HERE' | translate}}"></textarea>
+		</div>
+		<div class="post-creating-toolbar">
+			<div class="btn btn-border d-inline-flex align-items-center mr-1">
+				<i-feather class="pr-1" name="image"></i-feather>
+				{{ 'ProfileLanguage.ADD_PHOTOS' | translate}}
+			</div>
+			<div class="btn btn-border d-inline-flex align-items-center ">
+				<i-feather class="pr-1" name="file-plus"></i-feather>
+				{{ 'ProfileLanguage.ADD_FILES' | translate}}
+			</div>
+			<div class="btn d-inline-flex align-items-center float-right highlight-text">
+				{{ 'ProfileLanguage.POST' | translate}}
+				<i-feather class="pl-1" name="wind"></i-feather>
+			</div>
+		</div>
+		<div class="posts">
+
+		</div>
+	</div>
+</div>

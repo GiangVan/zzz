@@ -1,0 +1,18 @@
+<a *ngIf='!room.isRequesting' class="p-3 border-bottom btn btn-light d-flex" (click)='joinRoomHandler()'
+	(click)='destroy()'>
+	<i-feather class="mr-3" name="arrow-right-circle"></i-feather>
+	<strong class="text-nowrap highlight-text">{{ room.hasJoined ? ('GameRoomsItemOptionsDropdownLanguage.GO' | translate) : ('GameRoomsItemOptionsDropdownLanguage.JOIN' | translate)}}</strong>
+</a>
+<a *ngIf='room.isRequesting' class="p-3 border-bottom btn btn-light d-flex" (click)='cancelRoomHandler()'
+	(click)='destroy()'>
+	<i-feather class="mr-3" name="x-circle"></i-feather>
+	<strong class="text-nowrap highlight-text">{{ 'GameRoomsItemOptionsDropdownLanguage.CANCEL' | translate}}</strong>
+</a>
+<a class="p-3 border-bottom btn btn-light d-flex" (click)='destroy()'>
+	<i-feather class="mr-3" name="alert-triangle"></i-feather>
+	<strong class="text-nowrap highlight-text">{{ 'GameRoomsItemOptionsDropdownLanguage.REPORT' | translate}}</strong>
+</a>
+<a class="p-3 btn btn-light d-flex" (click)='destroy()'>
+	<i-feather class="mr-3" name="info"></i-feather>
+	<strong class="text-nowrap highlight-text">{{ 'GameRoomsItemOptionsDropdownLanguage.INFO' | translate}}</strong>
+</a>

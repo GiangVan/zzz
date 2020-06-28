@@ -1,0 +1,32 @@
+<div class="d-flex w-100 h-100 bg8 position-relative">
+	<!-- loader location -->
+	<div class="loaderLocation" #gameChannelLoaderLocation></div>
+
+	<app-joined-rooms class="h-100 bg9" #joinedRooms></app-joined-rooms>
+	<div class="px-4 pt-5 pb-4 d-flex flex-grow-1 overflow-auto position-relative">
+		<app-room-private-chat class="position-absolute position-top-left w-100 h-100 bg8"
+			style="z-index: 20; display: none;"></app-room-private-chat>
+
+		<div class="d-flex flex-column flex-grow-1 overflow-auto">
+			<h5 *ngIf='gameTitle' class="text-center mt-2"><u>{{gameTitle}}</u></h5>
+			<div class="row pb-5 border-bottom mx-1 mt-3 mb-3">
+				<div class="col-2"></div>
+				<div style="transition: all .35s ease;" [ngClass]="{
+					'col-8 btn highlight-text highlight-bghighlight-text px-4 py-3': true, 
+					'': roomFindingOption.isRoomFinding, 
+					'highlight-bg shadow-lg': !roomFindingOption.isRoomFinding
+				}" (click)='findFastRoom($event)'><span>
+						<i-feather *ngIf='!roomFindingOption.isRoomFinding' name="zap"></i-feather>
+					</span><span class="m-0 pl-2">
+						{{ roomFindingOption.isRoomFinding ? ('GameChannelLanguage.FINDING' | translate) : ('GameChannelLanguage.FIND_QUICKLY' | translate)}}
+					</span></div>
+				<div class="col-2"></div>
+			</div>
+			<app-room-global-chat class="flex-grow-1 overflow-auto"></app-room-global-chat>
+		</div>
+		<div class="pl-4 ml-4 border-left d-flex flex-column">
+			<app-game-rooms class="flex-grow-1 overflow-auto pb-2"></app-game-rooms>
+			<!-- ??? -->
+		</div>
+	</div>
+</div>

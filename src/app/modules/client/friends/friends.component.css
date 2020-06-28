@@ -1,0 +1,79 @@
+:host {
+	position: relative;
+}
+
+.main-container {
+	position: relative;
+	height: 100%;
+}
+
+.friends-container {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	height: 100%;
+}
+
+app-friend-chat {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	margin-right: 74px;
+	background-color: var(--bg9);
+	border-left: 1px solid var(--bg10);
+}
+
+.friends-items, .friends-options {
+	cursor: pointer;
+	transition: all .15s ease;
+}
+
+.friends-options {
+	min-width: 36px;
+	height: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.friend-items-container{
+	transition: all .15s ease;
+	padding-right: 1px;
+}
+
+.friend-items-container.active {
+	border-left: solid 6px var(--highlight3);
+}
+
+.friends-items:hover, .friends-options:hover {
+	background-color: var(--bg5);
+}
+
+.friends-items .img {
+	width: 48px;
+	min-width: 48px;
+	height: 48px;
+}
+
+.main-btn-resize {
+	position: absolute;
+	left: -27px;
+	top: 4px;
+	border: none;
+	background-color: transparent;
+	transform: scale(1.1);
+	z-index: 29;
+}
+
+.btn-resize {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 64px;
+	height: 64px;
+	background-color: transparent;
+	transform: scale(1.1);
+	border: none;
+}

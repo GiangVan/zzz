@@ -1,0 +1,40 @@
+<h1>{{ 'SettingsLanguage.SETTING' | translate}}</h1>
+<table style="width:100%" *ngIf='newSettings'>
+	<tr>
+		<th>anonymous</th>
+		<td>
+			<input type="checkbox" [(ngModel)]="newSettings.anonymous"/>
+		</td>
+	</tr>
+	<tr>
+		<th>birthmounth</th>
+		<td>
+			<select [(ngModel)]="newSettings.birthmonthPrivacy">
+				<option *ngFor="let accountPrivacy of accountPrivacyList" [ngValue]="accountPrivacy">
+					{{accountPrivacy}}</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th>birthyear</th>
+		<td><select [(ngModel)]="newSettings.birthyearPrivacy">
+				<option *ngFor="let accountPrivacy of accountPrivacyList" [ngValue]="accountPrivacy">
+					{{accountPrivacy}}</option>
+			</select></td>
+	</tr>
+	<tr>
+		<th>email</th>
+		<td><select [(ngModel)]="newSettings.emailPrivacy">
+				<option *ngFor="let accountPrivacy of accountPrivacyList" [ngValue]="accountPrivacy">
+					{{accountPrivacy}}</option>
+			</select></td>
+	</tr>
+	<tr>
+		<th>phone</th>
+		<td><select [(ngModel)]="newSettings.phonePrivacy">
+				<option *ngFor="let accountPrivacy of accountPrivacyList" [ngValue]="accountPrivacy">
+					{{accountPrivacy}}</option>
+			</select></td>
+	</tr>
+</table>
+<button class="btn btn-w" (click)='updateSettings()'>{{ 'SettingsLanguage.UPDATE' | translate}}</button>

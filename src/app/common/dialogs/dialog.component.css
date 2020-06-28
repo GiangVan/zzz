@@ -1,0 +1,23 @@
+:host {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.popup {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.exit-btn {
+	display: none;
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	color: var(--bg7);
+	transform: scale(1.1);
+	cursor: pointer;
+	z-index: 2;
+}

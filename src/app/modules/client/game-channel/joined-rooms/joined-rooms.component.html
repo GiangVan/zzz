@@ -1,0 +1,65 @@
+<div class="btn-resize" (click)='resizeContainer()'>
+	<div *ngIf="containerState !== 'expand'; else elseBlock">
+		<i-feather name="chevron-right"></i-feather>
+	</div>
+	<ng-template #elseBlock>
+		<i-feather name="chevron-left"></i-feather>
+	</ng-template>
+</div>
+
+
+<nav [ngClass]="{'h-100 d-flex flex-column position-relative': true, 'align-items-center': containerState != 'expand'}"
+	[@changeContainerState]="containerState">
+	<div class="d-flex align-items-center" *ngIf="containerState === 'expand'">
+		<!-- title -->
+		<strong class="flex-grow-1">
+			<h5>{{'JoinedRoomsLanguage.JOINED_ROOMS' | translate}}</h5>
+		</strong>
+		<!-- options button -->
+		<div class="btn bg-transparent" (click)='showJoinedRoomsOptionsDropdown($event)'>
+			<i-feather name="more-horizontal"></i-feather>
+		</div>
+	</div>
+
+	<!-- loader location -->
+	<div class="loaderLocation" #loaderLocation></div>
+
+	<!-- list -->
+	<div [@listAnimation]='joinedRooms.length' [ngStyle]="{
+			'margin-left': (containerState == 'expand') ? '-15px' : '0px',
+			'padding-left': (containerState == 'expand') ? '15px' : '0px',
+			'margin-right': (containerState == 'expand') ? '-15px' : '0px'
+		}" class="my-4 d-flex flex-column flex-grow-1 overflow-hidden overflow-y-auto">
+
+		<!-- item -->
+		<div (click)='showPrivateChat(room.id)' [ngClass]="{
+				'room-items d-flex rounded-lg overflow-hidden img': true, 
+				'p-3 my-2': containerState == 'expand',
+				'px-2': containerState != 'expand'
+			}" *ngFor="let room of joinedRooms" [ngStyle]="{
+				'background-image': (containerState == 'expand') ? 'url('+room.backgroundUrl+')' : '',
+				'margin-right': (containerState == 'expand') ? '15px' : '0px'
+			}">
+			<div class="layout" [ngStyle]="{'display': (containerState == 'expand') ? 'block' : 'none'}"></div>
+			<!-- image -->
+			<div class="img rounded-circle" [ngStyle]="{'background-image':'url('+room.logoUrl+')'}">
+			</div>
+			<!-- info -->
+			<div *ngIf="containerState === 'expand'" class="pl-3 flex-grow-1 overflow-hidden">
+				<div class="overflow-hidden w-100 text-nowrap"><strong class="highlight-text">{{room.name}}</strong>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+	<!-- quick search button -->
+	<div (click)='showSearchPopup()' [style.width]="containerState != 'expand' ? '65px' : 'unset'"
+		[style.height]="containerState != 'expand' ? '38px' : 'unset'"
+		[ngClass]="{'btn btn-border mb-2 d-flex justify-content-center align-items-center': true, 'm-2': containerState != 'expand'}"
+		#searchFriendBtn>
+		<i-feather style="transform: scale(0.9);" name="search"></i-feather><strong class="pl-2"
+			*ngIf="containerState === 'expand'">{{ 'JoinedRoomsLanguage.QUICK_SEARCH_ROOMS' | translate}}</strong>
+	</div>
+</nav>

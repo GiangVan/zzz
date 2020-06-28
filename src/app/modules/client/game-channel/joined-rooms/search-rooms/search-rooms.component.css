@@ -1,0 +1,29 @@
+.search-container {
+	padding: 75px 90px 40px 90px;
+	opacity: 0;
+}
+
+.container-head {
+	top: 0;
+	left: 10%;
+	width: 80%;
+	border-radius: 0px 0px 10px 10px;
+}
+
+.searcher {
+	border-bottom: solid 2px var(--secondary-text);
+}
+
+.searcher:focus {
+	outline: none;
+}
+
+.search-btn:hover {
+	background-color: var(--bg5);
+}
+
+.logo {
+	width: 36px;
+	min-width: 36px;
+	height: 36px;
+}

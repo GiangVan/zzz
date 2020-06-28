@@ -1,0 +1,15 @@
+<div class="btn-resize bg-transparent" (click)='resizeContainer()'>
+	<div *ngIf="containerState === 'expand'; else elseBlock">
+		<i-feather name="chevron-left"></i-feather>
+	</div>
+	<ng-template #elseBlock>
+		<i-feather name="chevron-right"></i-feather>
+	</ng-template>
+</div>
+
+<div class="container" [@changeContainerState]="containerState">
+	<div *ngIf='containerState === "expand"'>
+
+		<p>room-private-chat-post works!</p>
+	</div>
+</div>

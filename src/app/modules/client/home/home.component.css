@@ -1,0 +1,52 @@
+.home-container::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--bg10);
+	opacity: .75;
+	z-index: 1;
+}
+
+
+
+.game-channels{
+	width: 520px;
+}
+
+.game-channels-item {
+	height: 110px;
+	min-height: 110px;
+	position: relative;
+	min-height: max-content;
+	cursor: pointer;
+	transition: all .25s ease;
+}
+
+.game-channels-item:hover{
+	transform: scale(1.019);
+}
+
+.game-channels-item>div {
+	position: relative;
+	z-index: 1;
+}
+
+.game-channels-item::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--bg10);
+	opacity: .35;
+	transition: all .25s ease;
+}
+
+.game-name{
+	position: relative;
+    z-index: 1;
+}

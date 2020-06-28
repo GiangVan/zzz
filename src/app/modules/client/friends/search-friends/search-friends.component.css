@@ -1,0 +1,31 @@
+.search-container {
+	position: relative;
+	padding: 104px 90px 40px 90px;
+	opacity: 0;
+}
+
+.container-head {
+	position: absolute;
+	top: 0;
+	left: 10%;
+	width: 80%;
+	border-radius: 0px 0px 10px 10px;
+}
+
+.searcher {
+	border-bottom: solid 2px var(--secondary-text);
+}
+
+.searcher:focus {
+	outline: none;
+}
+
+.search-btn:hover {
+	background-color: var(--bg5);
+}
+
+.img {
+	width: 64px;
+	min-width: 64px;
+	height: 64px;
+}

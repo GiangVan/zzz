@@ -1,0 +1,28 @@
+<div class="navs shadow" #navs>
+	<a [routerLink]='homeUrl' [ngClass]="{'navs-items tooltip': true, 'active': checkExistUrl(homeUrl)}">
+		<i-feather class="mb-2" name="home"></i-feather>
+		<span class="tooltiptext bg5 rounded-lg py-2 px-3 text-nowrap shadow">
+			<strong>{{ 'ClientLanguage.HOME' | translate }}</strong>
+		</span>
+	</a>
+	<a (click)='redirectToGameChannel()' [ngClass]="{'navs-items mx-1 tooltip': true, 'active': checkExistUrl(gameChannelUrl)}">
+		<i-feather class="mb-2" name="box"></i-feather>
+		<span class="tooltiptext bg5 rounded-lg py-2 px-3 text-nowrap shadow">
+			<strong>{{ 'ClientLanguage.GAME' | translate }}</strong>
+		</span>
+	</a>
+	<a (click)='showProfileDropdown($event)' class="navs-items tooltip">
+		<i-feather class="mb-2" name="menu"></i-feather>
+		<span class="tooltiptext bg5 rounded-lg py-2 px-3 text-nowrap shadow">
+			<strong>{{ 'ClientLanguage.OPTIONS' | translate }}</strong>
+		</span>
+	</a>
+</div>
+
+
+<article class="w-100">
+	<router-outlet></router-outlet>
+</article>
+
+<!-- friends -->
+<app-friends></app-friends>

@@ -1,0 +1,3 @@
+<textarea focusthis class="form-control rounded border-lg flex-grow-1 p-2 my-4" placeholder="{{ 'FeedbackLanguage.TYPE_HERE' | translate}}" [(ngModel)]="feedback.content"></textarea>
+<button class="btn" (click)='sendFeedback()'>{{ 'FeedbackLanguage.SEND' | translate}}</button>
+<div #loaderLocation></div>

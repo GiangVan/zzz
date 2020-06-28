@@ -1,0 +1,22 @@
+<a class="p-3 border-bottom btn btn-light d-flex" routerLink="{{profileUrl}}" (click)='destroy()'>
+	<i-feather class="mr-3" name="user"></i-feather>
+	<strong class="text-nowrap highlight-text">{{ 'ProfileDropdownLanguage.MY_PROFILE' | translate}}</strong>
+</a>
+<a class="p-3 border-bottom btn btn-light d-flex" (click)='showFeedback()' (click)='destroy()'>
+	<i-feather class="mr-3" name="send"></i-feather>
+	<strong class="text-nowrap highlight-text">{{ 'ProfileDropdownLanguage.FEEDBACK' | translate}}</strong>
+</a>
+<a class="p-3 border-bottom btn btn-light d-flex" routerLink="{{settingsUrl}}" (click)='destroy()'>
+	<i-feather class="mr-3" name="settings"></i-feather>
+	<strong class="text-nowrap highlight-text">{{ 'ProfileDropdownLanguage.SETTING' | translate}}</strong>
+</a>
+<a class="p-3 border-bottom btn btn-light d-flex" (click)='changeLanguage()'>
+	<i-feather class="mr-3" name="globe"></i-feather>
+	<strong class="text-nowrap highlight-text" *ngIf='this.translateService.getDefaultLang() === "vi"'>Tiếng
+		Việt</strong>
+	<strong class="text-nowrap highlight-text" *ngIf='this.translateService.getDefaultLang() === "en"'>English</strong>
+</a>
+<a class="p-3 btn btn-light d-flex" (click)='logOut()' (click)='destroy()'>
+	<i-feather class="mr-3" name="log-out"></i-feather>
+	<strong class="text-nowrap highlight-text">{{ 'ProfileDropdownLanguage.LOGOUT' | translate}}</strong>
+</a>
